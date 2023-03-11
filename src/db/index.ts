@@ -1,24 +1,29 @@
-// export const MemoryDatabase = (() => {
-//   const users = [
-//     {
-//       id: 1,
-//       name: 'limsm',
-//       email: 'test@gmail.com',
-//       phone: '010-1234-1234',
-//     },
-//   ] as User[];
+import { User, UserCreateInput, UserUpdateInput } from './types/user.type';
+import UserList from './data/User.data';
 
-//   return {
-//     findAll: () => Promise.resolve(),
-//     findOne: (id: number) => Promise.resolve(),
-//     create: () => {
-//       return Promise.resolve();
-//     },
-//     update: () => {
-//       return Promise.resolve(true);
-//     },
-//     delete: (id: number) => {
-//       return Promise.resolve(true);
-//     },
-//   };
-// })();
+export const MemoryDatabase = (() => {
+  const users = UserList;
+
+  return {
+    findAll: () => Promise.resolve(users),
+    findOne: (id: number) =>
+      Promise.resolve(users.find((user) => user.id === id)),
+    create: (user: UserCreateInput) => {
+      const id = (users[users.length]?.id || 0) + 1;
+      return Promise.resolve({
+        id,
+        ...user,
+      });
+    },
+    update: (id: number, userUpdateInput: UserUpdateInput) => {
+      const findedUser = users.find((user) => user.id === id);
+      Object.assign(findedUser, userUpdateInput);
+      return Promise.resolve(true);
+    },
+    delete: (id: number) => {
+      const idx = users.findIndex((user) => user.id === id);
+      users.splice(idx, 1);
+      return Promise.resolve(true);
+    },
+  };
+})();
