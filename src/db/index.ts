@@ -21,14 +21,14 @@ export const UserMemoryDatabase = (() => {
       });
     },
     update: (id: number, userUpdateInput: UserUpdateInput) => {
-      const findedUser = userList.find((user) => user.id === id);
-      Object.assign(findedUser, userUpdateInput);
-      return Promise.resolve(true);
+      const findedObj = userList.find((user) => user.id === id);
+      const updatedObj = Object.assign(findedObj, userUpdateInput);
+      return Promise.resolve(updatedObj);
     },
     delete: (id: number) => {
       const idx = userList.findIndex((user) => user.id === id);
       userList.splice(idx, 1);
-      return Promise.resolve(true);
+      return Promise.resolve(id);
     },
   };
 })();
@@ -49,14 +49,14 @@ export const MenuMemoryDatabase = (() => {
       });
     },
     update: (id: number, menuUpdateInput: MenuUpdateInput) => {
-      const findedMenu = menuList.find((menu) => menu.id === id);
-      Object.assign(findedMenu, menuUpdateInput);
-      return Promise.resolve(true);
+      const findedObj = menuList.find((menu) => menu.id === id);
+      const updatedObj = Object.assign(findedObj, menuUpdateInput);
+      return Promise.resolve(updatedObj);
     },
     delete: (id: number) => {
       const idx = menuList.findIndex((menu) => menu.id === id);
       menuList.splice(idx, 1);
-      return Promise.resolve(true);
+      return Promise.resolve(id);
     },
   };
 })();
@@ -77,14 +77,14 @@ export const OrderMemoryDatabase = (() => {
       });
     },
     update: (id: number, orderUpdateInput: OrderUpdateInput) => {
-      const findedOrder = orderList.find((order) => order.id === id);
-      Object.assign(findedOrder, orderUpdateInput);
-      return Promise.resolve(true);
+      const findedObj = orderList.find((order) => order.id === id);
+      const updatedObj = Object.assign(findedObj, orderUpdateInput);
+      return Promise.resolve(updatedObj);
     },
     delete: (id: number) => {
       const idx = orderList.findIndex((order) => order.id === id);
       orderList.splice(idx, 1);
-      return Promise.resolve(true);
+      return Promise.resolve(id);
     },
   };
 })();

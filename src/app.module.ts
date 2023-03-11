@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CustomCacheModule } from './cache-module/cache-module';
@@ -14,6 +14,7 @@ import { UserModule } from './user-module/user.module';
     UserModule,
     MenuModule,
     OrderModule,
+    CacheModule.register({ isGlobal: true }),
   ],
   controllers: [AppController],
   providers: [AppService],
