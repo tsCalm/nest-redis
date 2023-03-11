@@ -22,7 +22,7 @@ export class MenuController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('size', new DefaultValuePipe(10), ParseIntPipe) size: number,
   ) {
-    return this.menuService.findAll();
+    return this.menuService.findAll(page, size);
   }
   @Get('/:id')
   findOne(@Param('id', ParseIntPipe) id: number) {

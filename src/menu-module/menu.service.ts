@@ -4,8 +4,8 @@ import { MenuMemoryDatabase } from '../db';
 
 @Injectable()
 export class MenuService {
-  findAll() {
-    return MenuMemoryDatabase.findAll();
+  findAll(page: number, size: number) {
+    return MenuMemoryDatabase.findAll(page, size);
   }
 
   findOne(id: number) {

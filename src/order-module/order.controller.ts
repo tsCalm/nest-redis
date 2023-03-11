@@ -21,7 +21,7 @@ export class OrderController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('size', new DefaultValuePipe(10), ParseIntPipe) size: number,
   ) {
-    return this.orderService.findAll();
+    return this.orderService.findAll(page, size);
   }
   @Get('/:id')
   findOne(@Param('id', ParseIntPipe) id: number) {

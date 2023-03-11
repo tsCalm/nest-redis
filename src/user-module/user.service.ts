@@ -4,8 +4,8 @@ import { UserMemoryDatabase } from '../db';
 
 @Injectable()
 export class UserService {
-  findAll() {
-    return UserMemoryDatabase.findAll();
+  findAll(page: number, size: number) {
+    return UserMemoryDatabase.findAll(page, size);
   }
 
   findOne(id: number) {

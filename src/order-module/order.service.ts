@@ -4,8 +4,8 @@ import { OrderMemoryDatabase } from '../db';
 
 @Injectable()
 export class OrderService {
-  findAll() {
-    return OrderMemoryDatabase.findAll();
+  findAll(page: number, size: number) {
+    return OrderMemoryDatabase.findAll(page, size);
   }
 
   findOne(id: number) {

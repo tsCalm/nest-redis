@@ -9,7 +9,8 @@ export const UserMemoryDatabase = (() => {
   const userList: Array<User> = UserList;
 
   return {
-    findAll: () => Promise.resolve(userList),
+    findAll: (page: number, size: number) =>
+      Promise.resolve(userList.slice((page - 1) * size, page * size)),
     findOne: (id: number) =>
       Promise.resolve(userList.find((user) => user.id === id)),
     create: (user: UserCreateInput) => {
@@ -36,7 +37,8 @@ export const MenuMemoryDatabase = (() => {
   const menuList: Array<Menu> = MenuList;
 
   return {
-    findAll: () => Promise.resolve(menuList),
+    findAll: (page: number, size: number) =>
+      Promise.resolve(menuList.slice((page - 1) * size, page * size)),
     findOne: (id: number) =>
       Promise.resolve(menuList.find((menu) => menu.id === id)),
     create: (menu: MenuCreateInput) => {
@@ -63,7 +65,8 @@ export const OrderMemoryDatabase = (() => {
   const orderList: Array<Order> = OrderList;
 
   return {
-    findAll: () => Promise.resolve(orderList),
+    findAll: (page: number, size: number) =>
+      Promise.resolve(orderList.slice((page - 1) * size, page * size)),
     findOne: (id: number) =>
       Promise.resolve(orderList.find((order) => order.id === id)),
     create: (order: OrderCreateInput) => {
