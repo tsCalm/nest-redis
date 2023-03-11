@@ -7,3 +7,6 @@ export type Order = {
   destination: string;
   order_list: Array<Menu>;
 };
+
+export type OrderCreateInput = Omit<Order, 'id'>;
+export type OrderUpdateInput = Partial<OrderCreateInput>;
