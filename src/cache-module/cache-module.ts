@@ -5,7 +5,7 @@ import { redisConfigAsync } from '../config-module/cache.config';
 import { RedisString } from './redis-string.service';
 
 @Module({
-  imports: [RedisModule.forRootAsync(redisConfigAsync)],
+  // imports: [RedisModule.forRootAsync(redisConfigAsync)],
   providers: [RedisString],
   exports: [RedisString],
 })

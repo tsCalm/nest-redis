@@ -9,12 +9,11 @@ import { UserModule } from './user-module/user.module';
 
 @Module({
   imports: [
-    CustomCacheModule,
+    // CustomCacheModule,
     ConfigModule,
     UserModule,
     MenuModule,
     OrderModule,
-    CacheModule.register({ isGlobal: true }),
   ],
   controllers: [AppController],
   providers: [AppService],
