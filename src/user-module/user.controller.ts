@@ -13,6 +13,7 @@ import {
   Post,
   Put,
   Query,
+  SetMetadata,
   UseInterceptors,
 } from '@nestjs/common';
 import { RedisCacheInterceptor } from '../interceptors/http-interceptor';
@@ -21,6 +22,7 @@ import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
+  static redisPrefix = 'user';
   constructor(private readonly userService: UserService) {}
 
   @Get()
@@ -32,12 +34,16 @@ export class UserController {
   }
 
   @Get('/:id')
-  // @Header('Cache-Control', 'max-age=10')
   @UseInterceptors(RedisCacheInterceptor)
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  // @Header('Cache-Control', 'max-age=60')
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    const startTime = new Date().getTime();
     console.log('진입');
 
-    return this.userService.findOne(id);
+    const findedUser = await this.userService.findOne(id);
+    const endTime = new Date().getTime();
+    console.log('db - 걸린시간 : ', (endTime - startTime) / 1000 + 'S');
+    return findedUser;
   }
 
   @Post('/create')
