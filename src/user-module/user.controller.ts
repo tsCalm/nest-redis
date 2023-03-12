@@ -15,6 +15,7 @@ import {
   Query,
   UseInterceptors,
 } from '@nestjs/common';
+import { RedisCacheInterceptor } from '../interceptors/http-interceptor';
 import { UserCreateInput, UserUpdateInput } from '../db/types/user.type';
 import { UserService } from './user.service';
 
@@ -31,10 +32,8 @@ export class UserController {
   }
 
   @Get('/:id')
-  @UseInterceptors(CacheInterceptor)
-  @CacheTTL(10)
-  // @CacheKey('custom-key')
   // @Header('Cache-Control', 'max-age=10')
+  @UseInterceptors(RedisCacheInterceptor)
   findOne(@Param('id', ParseIntPipe) id: number) {
     console.log('진입');
 
